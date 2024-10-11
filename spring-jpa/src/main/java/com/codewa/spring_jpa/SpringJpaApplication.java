@@ -20,8 +20,17 @@ public class SpringJpaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		patientRepository.save(new Patient(null, "Anouar", new Date(), false, 50));
-		patientRepository.save(new Patient(null, "Fatima", new Date(), true, 30));
-		patientRepository.save(new Patient(null, "Khalil", new Date(), false, 80));
+//		patientRepository.save(new Patient(null, "Anouar", new Date(), false, 50));
+//		patientRepository.save(new Patient(null, "Fatima", new Date(), true, 30));
+//		patientRepository.save(new Patient(null, "Khalil", new Date(), false, 80));
+		List<Patient> patients = patientRepository.findAll();
+		patients.forEach(p -> {
+			System.out.println("==============");
+			System.out.println(p.getId());
+			System.out.println(p.getName());
+			System.out.println(p.getBirth());
+			System.out.println(p.getScore());
+			System.out.println(p.isSick());
+		});
 	}
 }
