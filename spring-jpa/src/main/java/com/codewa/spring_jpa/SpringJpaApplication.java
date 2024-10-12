@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 public class SpringJpaApplication implements CommandLineRunner {
@@ -23,14 +24,37 @@ public class SpringJpaApplication implements CommandLineRunner {
 //		patientRepository.save(new Patient(null, "Anouar", new Date(), false, 50));
 //		patientRepository.save(new Patient(null, "Fatima", new Date(), true, 30));
 //		patientRepository.save(new Patient(null, "Khalil", new Date(), false, 80));
-		List<Patient> patients = patientRepository.findAll();
-		patients.forEach(p -> {
-			System.out.println("==============");
-			System.out.println(p.getId());
-			System.out.println(p.getName());
-			System.out.println(p.getBirth());
-			System.out.println(p.getScore());
-			System.out.println(p.isSick());
-		});
+		//insert 99 new patients
+//		for (int i = 1; i < 100; i++) {
+//			patientRepository.save(new Patient(null, ("Khalil" + i), new Date(), false, (int) (Math.random() * 1000)));
+//		}
+//		List<Patient> patients = patientRepository.findAll();
+//		patients.forEach(p -> {
+//			System.out.println("==============");
+//			System.out.println(p.getId());
+//			System.out.println(p.getName());
+//			System.out.println(p.getBirth());
+//			System.out.println(p.getScore());
+//			System.out.println(p.isSick());
+//		});
+
+		//find By Id
+		//findById(1L).get(): if the element does not present NoSuchElementException will be raised
+		//orElse(null): better but we need to check if the object is null or not before displaying data
+		//orElseThrow(()-> new RuntimeException("Element Not Found"): if the element does not exist we throw an error msg, but we still need to verify
+		Patient patient = patientRepository.findById(1L).orElse(null);
+		if(patient != null) {
+			System.out.println("**************");
+			System.out.println(patient.getId());
+			System.out.println(patient.getName());
+			System.out.println(patient.getBirth());
+			System.out.println(patient.getScore());
+			System.out.println(patient.isSick());
+		}
+		if(patient != null) {
+			patient.setScore(540);
+			patientRepository.save(patient);
+		}
 	}
+
 }
