@@ -25,7 +25,7 @@ public class SpringJpaApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 //		patientRepository.save(new Patient(null, "Anouar", new Date(), false, 50));
 //		patientRepository.save(new Patient(null, "Fatima", new Date(), true, 30));
-//		patientRepository.save(new Patient(null, "Khalil", new Date(), false, 80));
+//		patientRepository.save(new Patient(null, "Khalil", new Date(), true, 80));
 		//insert 99 new patients
 //		for (int i = 1; i < 100; i++) {
 //			patientRepository.save(new Patient(null, ("Khalil" + i), new Date(), false, (int) (Math.random() * 1000)));
@@ -55,8 +55,11 @@ public class SpringJpaApplication implements CommandLineRunner {
 //		patientRepository.deleteById(10L);
 
 		//pagination: return the 5 first patients
-		Page<Patient> patients = patientRepository.findAll(PageRequest.of(0, 5));
-		patients.forEach(p -> {
+		//Page<Patient> patients = patientRepository.findAll(PageRequest.of(0, 5));
+
+		//find sick patients
+		List<Patient> bySick = patientRepository.findBySick(true);
+		bySick.forEach(p -> {
 			System.out.println("==============");
 			System.out.println(p.getId());
 			System.out.println(p.getName());
