@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
     List<Patient> findBySick(boolean s);
+    List<Patient> findBySickIsTrueAndScoreGreaterThan(int score);
 }
