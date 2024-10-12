@@ -59,8 +59,9 @@ public class SpringJpaApplication implements CommandLineRunner {
 
 		//find sick patients
 		//List<Patient> bySick = patientRepository.findBySick(true);
-		List<Patient> bySickIsTrueAndScore = patientRepository.findBySickIsTrueAndScoreGreaterThan(50);
-		    bySickIsTrueAndScore.forEach(p -> {
+		//List<Patient> bySickIsTrueAndScore = patientRepository.findBySickIsTrueAndScoreGreaterThan(50);
+		    List<Patient> sickPatients = patientRepository.sickPatients(true);
+		sickPatients.forEach(p -> {
 			System.out.println("==============");
 			System.out.println(p.getId());
 			System.out.println(p.getName());
