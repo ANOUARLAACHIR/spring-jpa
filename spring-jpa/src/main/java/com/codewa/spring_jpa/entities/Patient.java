@@ -19,6 +19,7 @@ public class Patient {
     private String name;
     @Temporal(TemporalType.DATE)
     private Date birth;
+    @Column(columnDefinition = "BOOLEAN")
     private boolean sick;
     private int score;
 }
