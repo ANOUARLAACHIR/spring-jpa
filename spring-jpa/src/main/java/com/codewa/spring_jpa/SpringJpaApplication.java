@@ -51,10 +51,14 @@ public class SpringJpaApplication implements CommandLineRunner {
 			System.out.println(patient.getScore());
 			System.out.println(patient.isSick());
 		}
+		//update patient with id = 1
 		if(patient != null) {
 			patient.setScore(540);
 			patientRepository.save(patient);
 		}
+
+		//delete patient with id = 10
+		patientRepository.deleteById(10L);
 	}
 
 }
